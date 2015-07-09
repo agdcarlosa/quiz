@@ -6,14 +6,22 @@ var quizController = require('../controllers/quiz_controller');
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Quiz' });
-});
+});
 
-router.get('/quizes/question', quizController.question);
-router.get('/quizes/answer', quizController.answer);
+
 
 /* GET author page. */
 router.get('/author', function(req, res) {
   res.render('author', { author: 'Carlos González', img: '/images/cg.jpg' });
 });
+
+//Autoload de comandos con :quizId//
+router.param('quizId', quizController.load);// autoload :quizId})d
+
+//Definición de rutas de /quizes
+router.get('/quizes',                      quizController.index);
+router.get('/quizes/:quizId(\\d+)',        quizController.show);
+router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
+
 
 module.exports = router;
