@@ -5,19 +5,18 @@
 		</form>
 	</div>
 	<div>
-		<table>
-		<tr><th>Tema</th><th>Pregunta</th><th colspan="2"></th></tr>
+		<table style="width: 100%">
+		<tr><th>Tema</th><th>Pregunta</th><th></th></tr>
 		<% for(var i=0; i < quizes.length; i++){ %>
 			<tr>
 				<td><%= quizes[i].tema %></td>
 				<td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
-				<td><a href="quizes/<%= quizes[i].id %>/edit"><button>Editar</button></a></td>
-        <td>
+				<td><div><a href="quizes/<%= quizes[i].id %>/edit"><button>Editar</button></a></div><div>
           <form method="post" action="/quizes/<%= quizes[i].id %>?_method=delete">
             <button type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');">
               Borrar
             </button>
-          </form>
+          </form></div>
         </td>
 			</tr>
 		<% } %>
