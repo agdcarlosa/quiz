@@ -3,8 +3,10 @@ var path = require('path');
 //EN WINDOWS... console.log(process.env);
 // Postgres DATABASE_URL = postgres://user:passwd@host:port/database
 // SQLite   DATABASE_URL = sqlite://:@:/
-process.env.DATABASE_URL="sqlite://:@:/";
-process.env.DATABASE_STORAGE="quiz.sqlite";
+//Trabajando en windows el archivo .env no genera variables de entorno, intento controlarlo para no estar pendiente en la subidas	
+if(process.env.DATABASE_URL === undefined) process.env.DATABASE_URL="sqlite://:@:/";
+if(process.env.DATABASE_STORAGE === undefined) 	process.env.DATABASE_STORAGE="quiz.sqlite";
+
 var url = process.env.DATABASE_URL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/);
 var DB_name  = (url[6]||null);
 var user     = (url[2]||null);
