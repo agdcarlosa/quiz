@@ -2,11 +2,12 @@
 var router = express.Router();
 
 var quizController = require('../controllers/quiz_controller');
+var commentController = require('../controllers/comment_controller');
 
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Quiz', errors: [] });
-});
+});
 
 
 
@@ -15,7 +16,8 @@ router.get('/author', function(req, res) {
   res.render('author', { author: 'Carlos González', img: '/images/cg.jpg', errors: [] });
 });
 
-//Autoload de comandos con :quizId//
+//Autoload de comandos con :quizId
+//
 router.param('quizId', quizController.load);// autoload :quizId})d
 
 //Definición de rutas de /quizes
@@ -27,5 +29,8 @@ router.post('/quizes/create',              quizController.create);
 router.get('/quizes/:quizId(\\d+)/edit',   quizController.edit);
 router.put('/quizes/:quizId(\\d+)',        quizController.update);
 router.delete('/quizes/:quizId(\\d+)',     quizController.destroy);
+
+router.get('/quizes/:quizId(\\d+)/comments/new',commentController.new);
+router.post('/quizes/:quizId(\\d+)/comments',   commentController.create);
 
 module.exports = router;
