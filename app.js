@@ -28,6 +28,22 @@ app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req, res, next){
+	if(req.session.user){
+		var ahora = new Date();
+		if(!req.session.t_inactivo){
+			req.session.t_inactivo=ahora;
+		}
+		else if( ((ahora-(new Date(req.session.t_inactivo)))/1000) > (2*60) ){
+			delete req.session.user; 
+			delete req.session.t_inactivo; 
+			console.log("SESSION AUTO ENDS");
+		}
+		else req.session.t_inactivo=ahora;
+	}
+	next();
+});
+
 app.use(function(req, res, next) {
 	//guardar path en session.redir para despues de login o logout
 	if(!req.path.match(/\/login|\/logout/)){
