@@ -1,9 +1,19 @@
-﻿  <h5>Estadísticas</h5>
+﻿<%
+var test=["probar"];
+%>
+  <h5>Estadísticas</h5>
 	<div>
 		<table class="statistics">
 			<tr>
 				<td align="left">Número de preguntas</td>
-				<td align="right"><%= statistics[0]['n_preguntas'] %></td>
+				<td align="right">
+				<%for( i in statistics){%>
+					<%for( j in statistics[i]){%>
+						<%= j+":"+statistics[i][j]%>
+				  <%}%>
+				<%}%>
+				
+				<br><%= statistics[0] %> - <%= test[0] %></td>
 			</tr>
 			<tr>
 				<td align="left">Número de comentarios totales</td>
