@@ -3,23 +3,23 @@
 		<table class="statistics">
 			<tr>
 				<td align="left">Número de preguntas</td>
-				<td align="right"><%= statistics["0"]["N_Preguntas"] %> - <%= statistics["N_Preguntas"] %></td>
+				<td align="right"><%= statistics[0].n_preguntas %></td>
 			</tr>
 			<tr>
 				<td align="left">Número de comentarios totales</td>
-				<td align="right"><%= statistics[0]["N_Comentarios"] %></td>
+				<td align="right"><%= statistics[0].n_comentarios %></td>
 			</tr>
 			<tr>
 				<td align="left">Número medio de comentarios por pregunta</td>
-				<td align="right"><%= statistics[0]["Media"] %></td>
+				<td align="right"><%= statistics[0].media %></td>
 			</tr>
 			<tr>
 				<td align="left">Número de preguntas sin comentarios</td>
-				<td align="right"><%= statistics[0]["Preg_Sin"] %></td>
+				<td align="right"><%= statistics[0].preg_sin %></td>
 			</tr>
 			<tr>
 				<td align="left">Número de preguntas con comentarios</td>
-				<td align="right"><%= statistics[0]["Preg_Con"] %></td>
+				<td align="right"><%= statistics[0].preg_con %></td>
 			</tr>
 		</table>
 	</div>
