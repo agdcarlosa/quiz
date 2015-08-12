@@ -19,8 +19,7 @@ if(statistics[0].n_preguntas === undefined) statistics[0]=statistics[0][0];
 				<%}
 				*/
 				%>
-				
-				<br><%= statistics[0].n_preguntas %></td>
+				<%= statistics[0].n_preguntas %></td>
 			</tr>
 			<tr>
 				<td align="left">Número de comentarios totales</td>
@@ -40,8 +39,3 @@ if(statistics[0].n_preguntas === undefined) statistics[0]=statistics[0][0];
 			</tr>
 		</table>
 	</div>
-	<script>
-
-	var ver = '<%= JSON.stringify(statistics) %>';
-	console.log(ver);
-	</script>
