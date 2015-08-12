@@ -1,37 +1,10 @@
 /*
-Ampliación opcional: Añadir una página de estadisticas
-  
-
-Las personas interesadas en practicar más con express y MVC, pueden añadir una página de estadisticas. 
-La página de estadisticas estará accesible directamente desde la barra de navegación y mostrará las siguientes informaciones extraidas de la base de datos:
- El número de preguntas
- Quiz.count().then(function (count){
-          if(count === 0) {   // la tabla se inicializa solo si está vacía 
- El número de comentarios totales
- Comment.count().then(function (count){
-          if(count === 0) {   // la tabla se inicializa solo si está vacía 
- El número medio de comentarios por pregunta
- 
- El número de preguntas sin comentarios
- 
- El número de preguntas con comentarios
-
-Para implementar esta funcionalidad habra que crear una nueva entrada en el interfaz REST de quizes asociada a la ruta: GET /quizes/statistics
-
- Además habra que crear un nuevo controlador que extraiga la información de la base de datos y una nueva vista que la presente.
-
- Una vez realizado habra que guardar esta funcionalidad en una nueva versión (commit). a continuación se desplegará la rama en heroku y se subirá a GitHub.
-sequelize.query("select division_id, (modules.user_id) as modules_taken, ROUND(avg(scores.score),2) as average_score from " +                 "user join " +                 "(select user_id, score from test_score " +                 "UNION ALL " +                 "select user_id, score from task_score WHERE status_id = 1 " +                 ") as scores " +                 "  on user.id = scores.user_id " +                     "  join ( " +                     "      SELECT user_id FROM test_score " +                     "  UNION all " +                     "  SELECT user_id FROM task_score WHERE status_id NOT IN (3) " +                     "  UNION all " +                     "  SELECT user_id FROM elearning_score " +                     "  union all" +                     "  SELECT user_id FROM academy_screening " +                     "  union all" +                     "  SELECT user_id FROM academy_evaluation " +                     "  union all " +                     "  select user_id FROM academy_survey " +                     "  union al " +                     "  select user_id FROM offline_score " + "  ) as modules on user.id = modules.user_id WHERE division_id = " + user_id +"  group by division_id", {type: sequelize.QueryTypes.SELECT})     .then(onSuccess).error(onError)
-
 //esta consulta va ok en sqlite
-SELECT COUNT(N_Preguntas) AS N_Preguntas,SUM(N_Comentarios) AS N_Comentarios, 
-CAST(SUM(N_Comentarios) AS REAL)/COUNT(N_Preguntas) AS Media,
-SUM(Preg_Sin) AS Preg_Sin, SUM(Preg_Con) AS Preg_Con FROM (
-SELECT COUNT(DISTINCT Quizzes.id) AS N_Preguntas,COUNT(Comments.id) AS N_Comentarios ,
-CASE WHEN Comments.QuizId IS NULL THEN 1 ELSE 0 END AS Preg_Sin,
-CASE WHEN Comments.QuizId IS NULL THEN 0 ELSE 1 END AS Preg_Con
-FROM Quizzes LEFT JOIN Comments ON Quizzes.id=Comments.QuizId
-GROUP BY Quizzes.id) 
+SELECT COUNT(N_Preguntas) AS N_Preguntas,SUM(N_Comentarios) AS N_Comentarios,CAST(SUM(N_Comentarios) AS REAL)/COUNT(N_Preguntas) AS Media,
+SUM(Preg_Sin) AS Preg_Sin, SUM(Preg_Con) AS Preg_Con 
+FROM (
+SELECT COUNT(DISTINCT "Quizzes".id) AS N_Preguntas,COUNT("Comments".id) AS N_Comentarios,CASE WHEN "Comments"."QuizId" IS NULL THEN 1 ELSE 0 END AS Preg_Sin,CASE WHEN "Comments"."QuizId" IS NULL THEN 0 ELSE 1 END AS Preg_Con FROM "Quizzes" LEFT JOIN "Comments" ON "Quizzes".id="Comments"."QuizId" GROUP BY "Quizzes".id,"Comments"."QuizId"
+) A
 */
 
 var express = require('express');
