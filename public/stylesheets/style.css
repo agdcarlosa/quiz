@@ -10,3 +10,15 @@ nav span { margin: 0px 10px 0px 0px;}
 button {padding: 4px;}
 td div {float: left; margin: 2px;}
 .right {float: right;}
+
+.statistics {
+ background: #CCC;
+ border: 0px;
+ font-size: 12px;
+ width: 100%;		
+}
+.statistics td {
+ background: #eee;
+ padding: 5px 5px 5px 5px;
+ margin: 0px 0px 0px 0px;
+}
