@@ -1,5 +1,5 @@
 ﻿<%
-var test=["probar"];
+if(statistics[0].n_comentarios === undefined) statistics[0]=statistics[0][0];
 %>
   <h5>Estadísticas</h5>
 	<div>
@@ -8,6 +8,7 @@ var test=["probar"];
 				<td align="left">Número de preguntas</td>
 				<td align="right">
 				<%for( i in statistics){%>
+				  <%= "I:"+i %><br>
 					<%for( j in statistics[i]){%>
 						<%= j+":"+statistics[i][j]%><br>
 						<%for( k in statistics[i][j]){%>
@@ -16,7 +17,7 @@ var test=["probar"];
 				  <%}%>
 				<%}%>
 				
-				<br><%= statistics[0] %> - <%= test[0] %></td>
+				<br><%= statistics[0].n_comentarios %></td>
 			</tr>
 			<tr>
 				<td align="left">Número de comentarios totales</td>
