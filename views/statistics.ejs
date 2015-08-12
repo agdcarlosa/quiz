@@ -9,7 +9,10 @@ var test=["probar"];
 				<td align="right">
 				<%for( i in statistics){%>
 					<%for( j in statistics[i]){%>
-						<%= j+":"+statistics[i][j]%>
+						<%= j+":"+statistics[i][j]%><br>
+						<%for( k in statistics[i][j]){%>
+						 <%= k+":"+statistics[i][j][k]%><br>
+						<%}%>
 				  <%}%>
 				<%}%>
 				
